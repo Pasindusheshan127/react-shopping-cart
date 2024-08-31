@@ -21,7 +21,6 @@ const ProductCart = (props) => {
     <div className='bg-white p-5 rounded-xl shadow-sm'>
         <Link to={slug}>
            <img src={image} alt="" className='w-full h-80 object-cover object-top drop-shadow-[0-80px-300px-#0007]' />
-
         </Link>
         <h3 className='text-xl py-3 text-center font-medium '>{name}</h3>
         <div className='flex justify-between items-center'>
