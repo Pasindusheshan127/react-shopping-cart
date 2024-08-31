@@ -1,22 +1,20 @@
-import React from 'react'
-import { useSelector,useDispatch } from 'react-redux';
+import React, { useCallback } from 'react'
+import {useDispatch } from 'react-redux';
 import {Link} from "react-router-dom"
 import { addToCart } from '../store/cart';
 
 const ProductCart = (props) => {
-    const carts = useSelector(store => store.cart.items)
     const {id,name,price,image,slug} = props.data;
     const dispatch = useDispatch();
-    const handleAddToCart = () =>{
-           dispatch(
-            addToCart(
-            {  
-              productId: id,
-              quantity:1
-            }
-            )
-           )
-    }
+    // Use useCallback to memoize the function and prevent unnecessary re-creations
+  const handleAddToCart = useCallback(() => {
+    dispatch(
+      addToCart({
+        productId: id,
+        quantity: 1,
+      })
+    );
+  }, [dispatch, id]); // Dependencies array includes dispatch and id to avoid recreating when these don't change
   return (
     <div className='bg-white p-5 rounded-xl shadow-sm'>
         <Link to={slug}>

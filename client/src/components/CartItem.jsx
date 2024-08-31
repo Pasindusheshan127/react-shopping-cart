@@ -9,7 +9,7 @@ const CartItem = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      const findDetail = products.filter(product => product.id === productId)[0];
+    const findDetail = products.find(product => product.id === productId);
       setDetails(findDetail);
   },[productId])
 

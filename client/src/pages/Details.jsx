@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { products } from '../data/products';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cart';
@@ -9,15 +9,16 @@ const Details = () => {
   const [detail, setDetails] = useState([]); 
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch(); 
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const findDetail = products.filter((product) => product.slug === slug);
     if (findDetail.length > 0) {
       setDetails(findDetail[0]);
     } else {
-      window.location.href = '/'; 
+      navigate('/');
     }
-  }, [slug]);
+  }, [slug,navigate]);
 
   const handleMinusQuantity = () =>{
     setQuantity(quantity -1 < 1 ? 1 : quantity - 1);
@@ -33,6 +34,10 @@ const Details = () => {
       productId: detail.id,
       quantity: quantity
   }));
+  }
+
+  if (!detail) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -59,7 +64,7 @@ const Details = () => {
                 +
               </button>
             </div>
-            <button className='bg-slate-900 text-white px-7 rounded-xl py-3 shadow-2xl'>Add To Cart</button>
+            <button className='bg-slate-900 text-white px-7 rounded-xl py-3 shadow-2xl' onClick={handleAddToCart}>Add To Cart</button>
           </div>
           <p className="text-start">{detail.description}</p>
         </div>

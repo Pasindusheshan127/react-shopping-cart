@@ -4,7 +4,7 @@ import iconCart from '../assets/images/iconCart.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {toggleStatusTab} from "../store/cart"
 
-const Header = () => {  // Capitalize component name
+const Header = () => {  
   const [totalQuantity, setTotalQuantity] = useState(0);
   const carts = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Header = () => {  // Capitalize component name
     setTotalQuantity(total);
   }, [carts]); 
 
-  const hadleOpenTabBar = () => {
+  const handleOpenTabBar = () => {
     dispatch(toggleStatusTab());
   };
 
@@ -26,7 +26,7 @@ const Header = () => {  // Capitalize component name
       <Link to="/" className="text-xl font-semibold">
         Home.
       </Link>
-      <div className="w-10 h-10 bg-gray-100 rounded-full flex justify-center items-center relative" onClick={hadleOpenTabBar}>
+      <div className="w-10 h-10 bg-gray-100 rounded-full flex justify-center items-center relative" onClick={handleOpenTabBar}>
         <img src={iconCart} alt="" className="w-6" />
         <span className="absolute top-0 right-0 bg-red-500 text-white text-sm w-4 h-4 rounded-full flex justify-center items-center">
           {totalQuantity}
