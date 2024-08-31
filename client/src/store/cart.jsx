@@ -54,7 +54,7 @@ const cartSlice = createSlice({
       const { productId, quantity } = action.payload;
 
       // Data validation
-      if (typeof productId !== 'number' || typeof quantity !== 'number') {
+      if (typeof productId !== 'number' || typeof quantity !== 'number' || quantity < 0) {
         console.error('Invalid payload data for changeQuantity:', action.payload);
         return;
       }

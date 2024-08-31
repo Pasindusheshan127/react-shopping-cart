@@ -3,6 +3,7 @@ import './App.css';
 import Layout from './components/Layout';
 import Details from './pages/Details';
 import Home from './pages/Home';
+import { products } from './data/products';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Home products={products}/>} />
           <Route path='/:slug' element={<Details />} />
         </Route>
       </Routes>
